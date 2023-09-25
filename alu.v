@@ -36,14 +36,14 @@ module alu
     output wire                                                o_carry
     );
     
-    localparam ADD = 8'b00100000;
-    localparam SUB = 8'b00100010;
-    localparam AND = 8'b00100100;
-    localparam OR  = 8'b00100101;
-    localparam XOR = 8'b00100110;
-    localparam SRA = 8'b00000011;
-    localparam SRL = 8'b00000010;
-    localparam NOR = 8'b00100111;
+    localparam ADD = 6'b100000;
+    localparam SUB = 6'b100010;
+    localparam AND = 6'b100100;
+    localparam OR  = 6'b100101;
+    localparam XOR = 6'b100110;
+    localparam SRA = 6'b000011;
+    localparam SRL = 6'b000010;
+    localparam NOR = 6'b100111;
 
     reg carry;
     reg signed [NB_DATA : 0] aluResult;
