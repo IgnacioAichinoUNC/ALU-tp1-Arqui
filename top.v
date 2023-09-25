@@ -40,17 +40,19 @@ module top#(
    //variables locales
     reg     [NB_DATA-1 : 0]      datoA;
     reg     [NB_DATA-1 : 0]      datoB;
-    reg     [NB_DATA-1 : 0]      operacion;
+    reg     [NB_DATA-3 : 0]      operacion;
     
     wire    [NB_DATA-1 : 0]      aluA;
     wire    [NB_DATA-1 : 0]      aluB;
-    wire    [NB_DATA-1 : 0]      aluOp;
+    wire    [NB_DATA-3 : 0]      aluOp;
     wire    [NB_DATA-1 : 0]      aluOut;
     wire                         aluCarry;
     
     assign aluA = datoA;
     assign aluB = datoB;
     assign aluOp = operacion;
+    assign o_res = aluOut;
+    assign o_carry = aluCarry;
     
     alu
 	#(
@@ -69,7 +71,7 @@ module top#(
             if(i_reset)begin
                 datoA    <= {NB_DATA-1{1'b0}};
                 datoB    <= {NB_DATA-1{1'b0}};
-                operacion   <= {NB_DATA-1{1'b0}};
+                operacion   <= {NB_DATA-3{1'b0}};
             end
             else if(boton1)
                 datoA <= switches;
