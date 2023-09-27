@@ -1,21 +1,14 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: FCEFyN - UNC
+// Engineer: Aichino Ignacio - Gabriel Vignolo
 // 
-// Create Date: 24.09.2023 16:06:30
-// Design Name: 
-// Module Name: tb_alu
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
+// Design Name: ALU 
+// Module Name: alu
+// Project Name: TP1
+// Target Devices: Basys3
 // Description: 
 // 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -41,62 +34,55 @@ module tb_alu(
     wire  signed [8:0]  res;
     wire  carry;
     reg clock;
-    reg i_reset;
+   // reg i_reset;
     
-    top #(MY_SIZE_TB)ex1 (sw,btnAA, btnBB, btnOP1, clock, i_reset);
+    top #(MY_SIZE_TB)ex1 (sw,btnAA, btnBB, btnOP1, clock);
      
     
     
     initial
     begin
-       clock = 1'b1;
-       i_reset = 1'b1;
-       #100
-        i_reset = 1'b0;
-        clock = ~clock; //flanco de bajada
-        
-        sw = 8'b10000000;
-       btnBB = 1'b0;
-       btnOP1 = 1'b0;
-       btnAA = 1'b1;
-       
+        clock = 1'b1;
+        //i_reset = 1'b1;
         #100
+        //i_reset = 1'b0;
         clock = ~clock; //flanco de bajada
+
+        sw = 8'b11111111;
+        btnBB = 1'b0;
+        btnOP1 = 1'b0;
+        btnAA = 1'b1;
         
         #100
-        clock = ~clock; //flanco de bajada
+        clock = ~clock; //flanco de subida
         
-        sw = 8'b00000011;
+        #100
+        clock = ~clock; //flanco de bajada
+
+        sw = 8'b11111111;
         btnAA = 1'b0;
         btnBB = 1'b1;
-        //dump a
 
         #100
         clock = ~clock;//flanco de subida
         #100
         clock = ~clock;//flanco de bajada
-         //dump b
         #100
 
-
+        
         btnBB = 1'b0;
-        sw = {2'b0,NOR};
+        sw = {2'b0,ADD};
         btnOP1 = 1'b1;
         #100
         clock = ~clock; //flanco de subida
         #100
         clock = ~clock; //flanco de bajada
-          //dump opcode
-
-        #100
-        clock = ~clock;
-        #100
-        clock = ~clock;
-
-
-      
-
         
+        #100
+        clock = ~clock;
+        #100
+        clock = ~clock;
+
     end
 
 endmodule

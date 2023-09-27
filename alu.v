@@ -1,21 +1,14 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: FCEFyN - UNC
+// Engineer: Aichino Ignacio - Gabriel Vignolo
 // 
-// Create Date: 20.09.2023 19:20:00
-// Design Name: 
+// Design Name: ALU 
 // Module Name: alu
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
+// Project Name: TP1
+// Target Devices: Basys3
 // Description: 
 // 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -23,7 +16,7 @@
 module alu
     #(
     //parameter
-    parameter                                               NB_DATA     = 8
+    parameter          NB_DATA     = 8
     )
     (
     //inputs
