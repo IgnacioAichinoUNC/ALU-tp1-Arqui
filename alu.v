@@ -1,14 +1,21 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: FCEFyN - UNC
-// Engineer: Aichino Ignacio - Gabriel Vignolo
+// Company: 
+// Engineer: 
 // 
-// Design Name: ALU 
+// Create Date: 20.09.2023 19:20:00
+// Design Name: 
 // Module Name: alu
-// Project Name: TP1
-// Target Devices: Basys3
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
 // Description: 
 // 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -39,14 +46,14 @@ module alu
     localparam NOR = 6'b100111;
 
     reg carry;
-    reg signed [NB_DATA : 0] aluResult;
+    reg [NB_DATA : 0] aluResult;
     assign o_res = aluResult;
     assign o_carry = carry;
          
     always @(*) begin
         case (op)
         ADD: begin
-                aluResult = dato_a + dato_b; //ADD
+                aluResult = $signed(dato_a) + $signed(dato_b); //ADD
                 carry = aluResult[NB_DATA];
              end
         SUB: begin
@@ -66,7 +73,7 @@ module alu
                 carry = 1'b0;
              end
         SRA: begin
-                aluResult = dato_a >>> dato_b; //SRA
+                aluResult = $signed(dato_a) >>> dato_b; //SRA
                 carry = 1'b0;
              end
         SRL: begin
@@ -82,5 +89,6 @@ module alu
                     carry = 1'b0;
                  end
         endcase
+  
     end
 endmodule

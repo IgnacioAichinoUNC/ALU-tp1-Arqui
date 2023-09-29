@@ -1,14 +1,21 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: FCEFyN - UNC
-// Engineer: Aichino Ignacio - Gabriel Vignolo
+// Company: 
+// Engineer: 
 // 
-// Design Name: ALU 
-// Module Name: alu
-// Project Name: TP1
-// Target Devices: Basys3
+// Create Date: 24.09.2023 16:06:30
+// Design Name: 
+// Module Name: tb_alu
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
 // Description: 
 // 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -25,27 +32,28 @@ module tb_alu(
     localparam SRA  =    6'b000011;
     localparam SRL  =    6'b000010;
     localparam NOR  =    6'b100111;
-    localparam MY_SIZE_TB = 8;
-    reg [(MY_SIZE_TB-1):0] sw;
+    localparam NB_DATA = 8;
+    reg [(NB_DATA-1):0] sw;
     reg btnAA ;
     reg btnBB ;
     reg btnOP1 ;
+    reg btnReset;
     reg  [5:0] op;
-    wire  signed [8:0]  res;
+    wire [8:0]  res;
     wire  carry;
     reg clock;
    // reg i_reset;
     
-    top #(MY_SIZE_TB)ex1 (sw,btnAA, btnBB, btnOP1, clock);
+    top #(NB_DATA)top1 (sw,btnAA, btnBB, btnOP1, btnReset, clock);
      
     
     
     initial
     begin
+    
+        btnReset= 1'b0;
         clock = 1'b1;
-        //i_reset = 1'b1;
         #100
-        //i_reset = 1'b0;
         clock = ~clock; //flanco de bajada
 
         sw = 8'b11111111;
@@ -59,7 +67,7 @@ module tb_alu(
         #100
         clock = ~clock; //flanco de bajada
 
-        sw = 8'b11111111;
+        sw = 8'b00000010;
         btnAA = 1'b0;
         btnBB = 1'b1;
 
@@ -77,12 +85,56 @@ module tb_alu(
         clock = ~clock; //flanco de subida
         #100
         clock = ~clock; //flanco de bajada
-        
-        #100
-        clock = ~clock;
-        #100
-        clock = ~clock;
 
+        
+         sw = {2'b0,SUB};
+        btnOP1 = 1'b1;
+        #100
+        clock = ~clock; //flanco de subida
+        #100
+        clock = ~clock; //flanco de bajada
+
+        sw = {2'b0,AND};
+        btnOP1 = 1'b1;
+        #100
+        clock = ~clock; //flanco de subida
+        #100
+        clock = ~clock; //flanco de bajada
+        
+        sw = {2'b0,OR};
+        btnOP1 = 1'b1;
+        #100
+        clock = ~clock; //flanco de subida
+        #100
+        clock = ~clock; //flanco de bajada
+        
+        sw = {2'b0,XOR};
+        btnOP1 = 1'b1;
+        #100
+        clock = ~clock; //flanco de subida
+        #100
+        clock = ~clock; //flanco de bajada
+        
+        sw = {2'b0,SRA};
+        btnOP1 = 1'b1;
+        #100
+        clock = ~clock; //flanco de subida
+        #100
+        clock = ~clock; //flanco de bajada
+        
+        sw = {2'b0,SRL};
+        btnOP1 = 1'b1;
+        #100
+        clock = ~clock; //flanco de subida
+        #100
+        clock = ~clock; //flanco de bajada
+        
+        sw = {2'b0,NOR};
+        btnOP1 = 1'b1;
+        #100
+        clock = ~clock; //flanco de subida
+        #100
+        clock = ~clock; //flanco de bajada
     end
 
 endmodule

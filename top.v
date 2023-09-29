@@ -1,14 +1,21 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: FCEFyN - UNC
-// Engineer: Aichino Ignacio - Gabriel Vignolo
+// Company: 
+// Engineer: 
 // 
-// Design Name: ALU 
-// Module Name: alu
-// Project Name: TP1
-// Target Devices: Basys3
+// Create Date: 20.09.2023 19:45:52
+// Design Name: 
+// Module Name: top
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
 // Description: 
 // 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -22,6 +29,7 @@ module top#(
     input  wire                                             boton1,
     input  wire                                             boton2,
     input  wire                                             boton3,
+    input  wire                                             botonReset, 
     input  wire                                             i_clk,
    // input  wire                                             i_reset,
     
@@ -61,11 +69,11 @@ module top#(
 	);
 	
 	always@(posedge i_clk) begin: reset
-           /* if(i_reset)begin
+            if(botonReset)begin
                 datoA    <= {NB_DATA-1{1'b0}};
                 datoB    <= {NB_DATA-1{1'b0}};
                 operacion   <= {NB_DATA-3{1'b0}};
-            end*/
+            end
             if(boton1)
                 datoA <= switches;
             else if(boton2)
