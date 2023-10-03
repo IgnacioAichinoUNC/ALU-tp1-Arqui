@@ -53,11 +53,11 @@ module alu
     always @(*) begin
         case (op)
         ADD: begin
-                aluResult = $signed(dato_a) + $signed(dato_b); //ADD
+                aluResult = (dato_a) + (dato_b); //ADD
                 carry = aluResult[NB_DATA];
              end
         SUB: begin
-                aluResult = dato_a - dato_b; //SUB
+                aluResult = (dato_a) - (dato_b); //SUB
                 carry = aluResult[NB_DATA];
              end
         AND: begin
